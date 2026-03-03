@@ -1,37 +1,50 @@
-import { cn } from "@/lib/utils";
+import type { ReactNode } from "react";
+import { OutcomeStatement } from "./outcome-statement";
 
-interface ChallengeCardProps {
+interface Challenge {
+  id: string;
   title: string;
   description: string;
   outcome?: string;
-  children: React.ReactNode;
-  className?: string;
 }
 
-export function ChallengeCard({
-  title,
-  description,
-  outcome,
-  children,
-  className,
-}: ChallengeCardProps) {
+interface ChallengeCardProps {
+  challenge: Challenge;
+  index: number;
+  visualization?: ReactNode;
+}
+
+export function ChallengeCard({ challenge, index, visualization }: ChallengeCardProps) {
+  const stepNumber = String(index + 1).padStart(2, "0");
+
   return (
     <div
-      className={cn(
-        "bg-card border border-border/60 shadow-[0_1px_2px_0_rgb(0_0_0/0.03)] rounded-lg p-6 space-y-4 hover:border-primary/30 hover:shadow-[0_2px_8px_0_rgb(0_0_0/0.05)] transition-all duration-150",
-        className
-      )}
+      className="bg-card rounded-lg p-6 space-y-4"
+      style={{
+        border: "1px solid color-mix(in oklch, var(--border), transparent 40%)",
+        boxShadow:
+          "0 1px 3px oklch(0 0 0 / 0.08), 0 1px 2px oklch(0 0 0 / 0.04)",
+      }}
     >
       <div>
-        <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="text-sm text-muted-foreground mt-1">{description}</p>
-      </div>
-      {children}
-      {outcome && (
-        <div className="pt-2 border-t border-border/60">
-          <p className="text-sm font-medium text-[color:var(--success)]">{outcome}</p>
+        <div className="flex items-baseline gap-3 mb-1">
+          <span
+            className="font-mono text-sm font-medium w-6 shrink-0 tabular-nums"
+            style={{ color: "color-mix(in oklch, var(--primary) 70%, transparent)" }}
+          >
+            {stepNumber}
+          </span>
+          <h2 className="text-lg font-semibold">{challenge.title}</h2>
         </div>
-      )}
+        <p
+          className="text-sm text-muted-foreground"
+          style={{ paddingLeft: "calc(1.5rem + 0.75rem)" }}
+        >
+          {challenge.description}
+        </p>
+      </div>
+      {visualization && <div>{visualization}</div>}
+      {challenge.outcome && <OutcomeStatement outcome={challenge.outcome} />}
     </div>
   );
 }

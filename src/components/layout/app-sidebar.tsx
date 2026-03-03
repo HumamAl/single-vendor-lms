@@ -7,6 +7,10 @@ import { cn } from "@/lib/utils";
 import { APP_CONFIG } from "@/lib/config";
 import {
   LayoutDashboard,
+  BookOpen,
+  Users,
+  BarChart3,
+  Award,
   ChevronLeft,
   ChevronRight,
   Lightbulb,
@@ -23,9 +27,11 @@ import {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const navItems = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  // Dashboard Builder agent: add 3-5 feature page nav items here.
-  // Example: { href: "/orders", label: "Orders", icon: ShoppingCart },
+  { href: "/", label: "Learning Overview", icon: LayoutDashboard },
+  { href: "/courses", label: "Course Catalog", icon: BookOpen },
+  { href: "/learners", label: "Learner Management", icon: Users },
+  { href: "/reports", label: "Progress Reports", icon: BarChart3 },
+  { href: "/certifications", label: "Certifications", icon: Award },
 ];
 
 function SidebarLogo({ collapsed }: { collapsed: boolean }) {
