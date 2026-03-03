@@ -70,7 +70,7 @@ function DeliveryTypeBadge({ type }: { type: DeliveryType }) {
   const config: Record<DeliveryType, string> = {
     "Self-Paced": "text-primary bg-primary/8 border-0",
     ILT: "text-[color:var(--warning)] bg-[color:var(--warning)]/10 border-0",
-    Blended: "text-purple-600 bg-purple-50 border-0",
+    Blended: "text-[color:var(--chart-2)] bg-[color:var(--chart-2)]/10 border-0",
   };
   return (
     <Badge
